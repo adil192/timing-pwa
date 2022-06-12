@@ -5,6 +5,7 @@ export let resultDescLabel: HTMLParagraphElement;
 
 export let themeColor: string;
 
+const fps: number = 60;
 let currentMs: number = 500;
 
 enum State {
@@ -57,7 +58,7 @@ function start() {
 	resultDescLabel.innerText = "";
 	square.style.backgroundColor = "transparent";
 
-	currentMs = Math.floor(1000 * Math.round(Math.random() * 60) / 60);
+	currentMs = Math.floor(1000 * Math.round(Math.random() * fps) / fps);
 }
 
 function btnClicked(inputMs: number) {
