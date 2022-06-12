@@ -45,6 +45,10 @@ footer {
 	padding: 1rem;
 }
 
+.guessesLabel {
+	padding-block-start: 1rem;
+	margin-block-end: -1rem;
+}
 #guessesRow {
 	display: flex;
 	flex-flow: row nowrap;
