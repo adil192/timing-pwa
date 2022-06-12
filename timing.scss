@@ -1,5 +1,5 @@
 
-$theme-color: #111;
+$theme-color: #0d6efd;
 
 :root {
 	--theme-color: #{$theme-color};
@@ -39,6 +39,9 @@ square {
 	background-color: transparent;
 	color: #f0f0f0;
 	transition: none !important;
+	> h2, > p {
+		text-shadow: 0.1rem 0.1rem 1rem #0000cc;
+	}
 }
 
 footer {
