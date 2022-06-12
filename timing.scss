@@ -50,9 +50,16 @@ footer {
 
 .flashingWarning {
 	animation: flashingWarningFadeOut 10s forwards;
+	pointer-events: none;
+	opacity: 0;
+	line-height: 0;
+	font-size: 0;
 	@keyframes flashingWarningFadeOut {
-		90% { opacity: 0.9; }
-		100% { opacity: 0; pointer-events: none; }
+		0% { opacity: 1; pointer-events: auto; line-height: inherit; font-size: inherit; }
+		70% { opacity: 0.8; pointer-events: auto; }
+		80% { opacity: 0; line-height: inherit; font-size: inherit; pointer-events: none; }
+		99% { line-height: 0; font-size: 0; }
+		100% { display: none; }
 	}
 }
 
