@@ -45,6 +45,14 @@ footer {
 	padding: 1rem;
 }
 
+.flashingWarning {
+	animation: flashingWarningFadeOut 10s forwards;
+	@keyframes flashingWarningFadeOut {
+		90% { opacity: 0.9; }
+		100% { opacity: 0; pointer-events: none; }
+	}
+}
+
 .guessesLabel {
 	padding-block-start: 1rem;
 	margin-block-end: -1rem;
