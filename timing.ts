@@ -63,4 +63,11 @@ function start() {
 
 function btnClicked(inputMs: number) {
 	if (state != State.Blinking) return;
+	state = State.Results;
+
+	let diffMs = Math.abs(currentMs - inputMs);
+	let diffFrames = Math.round(diffMs * fps / 1000);
+
+	resultMsLabel.innerText = currentMs + "ms";
+	resultDescLabel.innerText = `You were ${diffFrames} frames off with your guess of ${inputMs}ms!`;
 }
