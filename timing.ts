@@ -14,8 +14,20 @@ enum State {
 }
 let state: State = State.Blinking;
 
-function timeout(ms): Promise<void> {
+function timeout(ms: number): Promise<void> {
 	return new Promise(resolve => setTimeout(resolve, ms));
+}
+// breaks up a timeout into increments to allow for breaking early at some point
+async function cautiousTimeout(ms: number, earlyBreak: () => boolean) {
+	if (earlyBreak()) return;
+
+	let elapsed = 0;
+	for (const increment = 80, stop = ms - increment; elapsed <= stop; elapsed += increment) {
+		await timeout(increment);
+		if (earlyBreak()) return;
+	}
+
+	await timeout(ms - elapsed);
 }
 
 let timingThreadRunning: boolean = false;
@@ -26,12 +38,14 @@ async function timingThread() {
 	while (true) {
 		if (state == State.Blinking) {
 			square.style.backgroundColor = themeColor;
-			await timeout(currentMs);
+			await cautiousTimeout(currentMs, () => state != State.Blinking);
+			if (state != State.Blinking) continue;
+
 			square.style.backgroundColor = "transparent";
-			await timeout(1000);
-		} else {
+			await cautiousTimeout(1000, () => state != State.Blinking);
+		} else if (state == State.Results) {
 			square.style.backgroundColor = themeColor;
-			await timeout(1000);
+			await cautiousTimeout(1000, () => state != State.Results);
 		}
 	}
 }
