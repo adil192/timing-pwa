@@ -1,6 +1,10 @@
 
 $theme-color: #111;
 
+:root {
+	--theme-color: #{$theme-color};
+}
+
 html, body {
 	background: #f0f0f0;
 	color: $theme-color;
@@ -32,7 +36,7 @@ square {
 	width: 50vw;
 	max-width: 50vh;
 	margin: auto;
-	background-color: $theme-color;
+	background-color: transparent;
 	color: #f0f0f0;
 	transition: none !important;
 }

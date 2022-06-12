@@ -27,8 +27,8 @@ $lastUpdate = "22-06-06-1600"; // when changing this, you should also update sw.
 
 <main>
     <square>
-        <h2>33ms</h2>
-        <p>You were 1 frame off!</p>
+        <h2></h2>
+        <p></p>
     </square>
 </main>
 
