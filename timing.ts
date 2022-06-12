@@ -41,9 +41,15 @@ window.addEventListener("load", () => {
 	resultDescLabel = square.querySelector("p");
 	themeColor = getComputedStyle(document.documentElement).getPropertyValue('--theme-color');
 
-	start();
+	document.querySelectorAll("#guessesRow button").forEach((btn, i) => {
+		btn.addEventListener("click", () => {
+			let ms: number = parseInt(btn.getAttribute("data-ms"));
+			btnClicked(ms);
+		});
+	});
 
-	timingThread();
+	start();
+	timingThread().then();
 });
 
 function start() {
@@ -52,4 +58,8 @@ function start() {
 	square.style.backgroundColor = "transparent";
 
 	currentMs = Math.floor(1000 * Math.round(Math.random() * 60) / 60);
+}
+
+function btnClicked(inputMs: number) {
+	if (state != State.Blinking) return;
 }

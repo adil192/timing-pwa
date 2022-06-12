@@ -38,8 +38,8 @@ $lastUpdate = "22-06-06-1600"; // when changing this, you should also update sw.
         patterns or images, even with no history of epilepsy or seizures.</p>
     <p class="guessesLabel">How long does the square above appear?</p>
     <div id="guessesRow">
-	    <?php for ($ms = 1000/60; $ms < 1000; $ms += 1000/60) { ?>
-            <button class="btn btn-primary"><?=floor($ms)?>ms</button>
+	    <?php for ($ms = 1000/60; $ms < 1000; $ms += 1000/60) { $floored = floor($ms); ?>
+            <button class="btn btn-primary" data-ms="<?=$floored?>"><?=$floored?>ms</button>
 	    <?php } ?>
     </div>
 </footer>
