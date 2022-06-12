@@ -35,6 +35,7 @@ async function timingThread() {
 	if (timingThreadRunning) return;
 	timingThreadRunning = true;
 
+	// noinspection InfiniteLoopJS
 	while (true) {
 		if (state == State.Blinking) {
 			square.style.backgroundColor = themeColor;
