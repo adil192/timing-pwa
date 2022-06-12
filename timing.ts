@@ -50,4 +50,6 @@ function start() {
 	resultMsLabel.innerText = "";
 	resultDescLabel.innerText = "";
 	square.style.backgroundColor = "transparent";
+
+	currentMs = Math.floor(1000 * Math.round(Math.random() * 60) / 60);
 }
