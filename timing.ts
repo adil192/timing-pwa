@@ -27,8 +27,31 @@ class _Timing {
 
 	private readonly fps: number = 60;
 	private currentMs: number = 500;
+	private inputMs: number = 0;
 
-	private state: State = State.Blinking;
+	#state: State = State.Blinking;
+	public get state() {
+		return this.#state;
+	}
+	private set state(state: State) {
+		this.#state = state;
+		switch (state) {
+			case State.Blinking:
+				this.currentMs = Math.floor(1000 * Math.round(Math.random() * this.fps) / this.fps);
+
+				this.resultMsLabel.innerText = "";
+				this.resultDescLabel.innerText = "";
+				this.square.style.opacity = "0";
+				break;
+			case State.Results:
+				let diffMs = Math.abs(this.currentMs - this.inputMs);
+				let diffFrames = Math.round(diffMs * this.fps / 1000);
+
+				this.resultMsLabel.innerText = this.currentMs + "ms";
+				this.resultDescLabel.innerText = `You were ${diffFrames} frames off with your guess of ${this.inputMs}ms!`;
+				break;
+		}
+	}
 
 	constructor() {
 		window.addEventListener("load", () => {
@@ -38,15 +61,15 @@ class _Timing {
 
 			document.querySelectorAll("#guessesRow button").forEach((btn, i) => {
 				btn.addEventListener("click", () => {
-					let ms: number = parseInt(btn.getAttribute("data-ms"));
-					this.btnClicked(ms);
+					this.inputMs = parseInt(btn.getAttribute("data-ms"));
+					this.btnClicked();
 				});
 			});
 			this.square.addEventListener("click", () => {
 				this.squareClicked();
 			})
 
-			this.start();
+			this.state = State.Blinking;
 			this.timingThread().then();
 		});
 	}
@@ -72,29 +95,14 @@ class _Timing {
 		}
 	}
 
-	private start() {
-		this.resultMsLabel.innerText = "";
-		this.resultDescLabel.innerText = "";
-		this.square.style.opacity = "0";
-
-		this.currentMs = Math.floor(1000 * Math.round(Math.random() * this.fps) / this.fps);
-	}
-
-	private btnClicked(inputMs: number) {
+	private btnClicked() {
 		if (this.state != State.Blinking) return;
 		this.state = State.Results;
-
-		let diffMs = Math.abs(this.currentMs - inputMs);
-		let diffFrames = Math.round(diffMs * this.fps / 1000);
-
-		this.resultMsLabel.innerText = this.currentMs + "ms";
-		this.resultDescLabel.innerText = `You were ${diffFrames} frames off with your guess of ${inputMs}ms!`;
 	}
 
 	private squareClicked() {
 		if (this.state != State.Results) return;
 		this.state = State.Blinking;
-		this.start();
 	}
 
 }
