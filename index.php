@@ -26,7 +26,7 @@ $lastUpdate = "22-06-06-1600"; // when changing this, you should also update sw.
 </header>
 
 <main>
-    <square>
+    <square tabindex="0">
         <h2></h2>
         <p></p>
     </square>

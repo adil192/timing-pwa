@@ -41,7 +41,9 @@ class _Timing {
 
 				this.resultMsLabel.innerText = "";
 				this.resultDescLabel.innerText = "";
+
 				this.square.style.opacity = "0";
+				this.square.style.cursor = "initial";
 				break;
 			case State.Results:
 				let diffMs = Math.abs(this.currentMs - this.inputMs);
@@ -49,6 +51,9 @@ class _Timing {
 
 				this.resultMsLabel.innerText = this.currentMs + "ms";
 				this.resultDescLabel.innerText = `You were ${diffFrames} frames off with your guess of ${this.inputMs}ms!`;
+
+				this.square.style.opacity = "1";
+				this.square.style.cursor = "pointer";
 				break;
 		}
 	}
