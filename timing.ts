@@ -25,8 +25,6 @@ class _Timing {
 	public resultMsLabel: HTMLHeadingElement;
 	public resultDescLabel: HTMLParagraphElement;
 
-	public themeColor: string;
-
 	private readonly fps: number = 60;
 	private currentMs: number = 500;
 
@@ -37,7 +35,6 @@ class _Timing {
 			this.square = document.querySelector("square");
 			this.resultMsLabel = this.square.querySelector("h2");
 			this.resultDescLabel = this.square.querySelector("p");
-			this.themeColor = getComputedStyle(document.documentElement).getPropertyValue('--theme-color');
 
 			document.querySelectorAll("#guessesRow button").forEach((btn, i) => {
 				btn.addEventListener("click", () => {
@@ -59,14 +56,14 @@ class _Timing {
 		// noinspection InfiniteLoopJS
 		while (true) {
 			if (this.state == State.Blinking) {
-				this.square.style.backgroundColor = this.themeColor;
+				this.square.style.opacity = String(1);
 				await cautiousTimeout(this.currentMs, () => this.state != State.Blinking);
 				if (this.state != State.Blinking) continue;
 
-				this.square.style.backgroundColor = "transparent";
+				this.square.style.opacity = String(0);
 				await cautiousTimeout(1000, () => this.state != State.Blinking);
 			} else if (this.state == State.Results) {
-				this.square.style.backgroundColor = this.themeColor;
+				this.square.style.opacity = String(1);
 				await cautiousTimeout(1000, () => this.state != State.Results);
 			}
 		}
@@ -75,7 +72,7 @@ class _Timing {
 	private start() {
 		this.resultMsLabel.innerText = "";
 		this.resultDescLabel.innerText = "";
-		this.square.style.backgroundColor = "transparent";
+		this.square.style.opacity = "0";
 
 		this.currentMs = Math.floor(1000 * Math.round(Math.random() * this.fps) / this.fps);
 	}
