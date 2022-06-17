@@ -42,6 +42,9 @@ class _Timing {
 					this.btnClicked(ms);
 				});
 			});
+			this.square.addEventListener("click", () => {
+				this.squareClicked();
+			})
 
 			this.start();
 			this.timingThread().then();
@@ -86,6 +89,12 @@ class _Timing {
 
 		this.resultMsLabel.innerText = this.currentMs + "ms";
 		this.resultDescLabel.innerText = `You were ${diffFrames} frames off with your guess of ${inputMs}ms!`;
+	}
+
+	private squareClicked() {
+		if (this.state != State.Results) return;
+		this.state = State.Blinking;
+		this.start();
 	}
 
 }
