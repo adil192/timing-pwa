@@ -60,6 +60,13 @@ class _Timing {
 
 	constructor() {
 		window.addEventListener("load", () => {
+			// set up PWA service worker
+			if('serviceWorker' in navigator){
+				navigator.serviceWorker.register("sw.js")
+					.then(reg => console.log('service worker registered:', reg))
+					.catch(err => console.log('service worker not registered', err));
+			}
+
 			this.square = document.querySelector("square");
 			this.resultMsLabel = this.square.querySelector("h2");
 			this.resultDescLabel = this.square.querySelector("p");
