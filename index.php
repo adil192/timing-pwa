@@ -17,8 +17,10 @@ $lastUpdate = "22-06-06-1600"; // when changing this, you should also update sw.
 
 	<link rel="stylesheet" href="/assets/ext/bootstrap.5.1.3.min.css" />
 	<link rel="stylesheet" href="timing.css?lastUpdate=<?=$lastUpdate?>">
+
     <link rel="manifest" href="timing.webmanifest">
     <meta name="theme-color" content="#0d6efd"/>
+    <link rel="apple-touch-icon" href="/maskable_icon_x192.png">
 </head>
 <body>
 
