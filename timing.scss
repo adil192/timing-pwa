@@ -11,6 +11,11 @@ body {
 	display: flex;
 	flex-flow: column nowrap;
 }
+@media (prefers-color-scheme: dark) {
+	html, body {
+		background: #191919;
+	}
+}
 
 header {
 	background: $theme-color;
