@@ -46,7 +46,6 @@ class _Timing {
 				this.resultDescLabel.innerText = "";
 
 				this.square.style.opacity = "0";
-				this.square.style.cursor = "initial";
 				break;
 			case State.Results:
 				let diffMs = Math.abs(this.currentMs - this.inputMs);
@@ -56,7 +55,6 @@ class _Timing {
 				this.resultDescLabel.innerText = `You were ${diffFrames} frames off with your guess of ${this.inputMs}ms!`;
 
 				this.square.style.opacity = "1";
-				this.square.style.cursor = "pointer";
 				break;
 		}
 	}
@@ -83,9 +81,6 @@ class _Timing {
 			})
 			this.guessesSubmit.addEventListener("click", () => {
 				this.btnClicked();
-			})
-			this.square.addEventListener("click", () => {
-				this.squareClicked();
 			})
 
 			this.state = State.Blinking;
@@ -122,11 +117,6 @@ class _Timing {
 			this.state = State.Blinking;
 			this.guessesSubmit.innerText = "Submit";
 		}
-	}
-
-	private squareClicked() {
-		if (this.state != State.Results) return;
-		this.state = State.Blinking;
 	}
 
 }
