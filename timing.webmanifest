@@ -2,7 +2,7 @@
 	"name": "Timing trainer",
 	"short_name": "Timing",
 	"description": "Learn to identify sub-second timing intervals.",
-	"start_url": "/timing/",
+	"start_url": "/timing/#pwa-enabled",
 	"scope": "/timing/",
 	"display": "standalone",
 	"theme_color": "#0d6efd",

@@ -20,6 +20,20 @@ async function cautiousTimeout(ms: number, earlyBreak: () => boolean) {
 	await timeout(ms - elapsed);
 }
 
+function isStandalone(): boolean {
+	if (document.referrer.includes('android-app://')) return true;
+	// @ts-ignore
+	if (window.navigator.standalone) return true; // ios fallback
+
+	if (location.hash.indexOf("pwa-enabled") !== -1) return true;
+
+	if (window.matchMedia) return ["fullscreen", "standalone", "minimal-ui"].some(
+		(displayMode) => window.matchMedia('(display-mode: ' + displayMode + ')').matches
+	);
+
+	return false;
+}
+
 class _Timing {
 	public square: HTMLElement;
 	public resultMsLabel: HTMLHeadingElement;
@@ -74,6 +88,11 @@ class _Timing {
 			this.guessesRange = document.querySelector("#guessesRange");
 			this.guessesValue = document.querySelector("#guessesValue");
 			this.guessesSubmit = document.querySelector("#guessesSubmit");
+
+			if (!isStandalone()) {
+				let githubLink: HTMLAnchorElement = document.querySelector("#githubLink");
+				githubLink.style.display = "block";
+			}
 
 			this.guessesRange.addEventListener("input", () => {
 				this.inputMs = Math.round(this.guessesRange.valueAsNumber);
