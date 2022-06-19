@@ -22,6 +22,25 @@ header {
 	background: $theme-color;
 	color: white;
 	padding: 1rem;
+	display: flex;
+	flex-flow: row nowrap;
+	align-content: center;
+
+	> h1 {
+		flex: 1;
+	}
+
+	#githubLink {
+		height: 100%;
+		width: auto;
+		max-height: 3rem;
+		max-width: 4rem;
+		> img {
+			filter: invert(1);
+			height: 100%;
+			width: 100%;
+		}
+	}
 }
 
 main {

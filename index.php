@@ -27,6 +27,9 @@ $lastUpdate = "22-06-06-1900"; // when changing this, you should also update sw.
 
 <header>
 	<h1>Timing trainer</h1>
+    <a id="githubLink" class="btn btn-primary" href="https://github.com/adil192/timing-pwa" title="GitHub project" aria-label="GitHub project" style="display: none;">
+        <img src="/assets/images/logos/GitHub-Mark.svg" width="121" height="118" aria-hidden="true">
+    </a>
 </header>
 
 <main>
