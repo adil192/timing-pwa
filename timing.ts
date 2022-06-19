@@ -117,8 +117,10 @@ class _Timing {
 	private btnClicked() {
 		if (this.state == State.Blinking) {
 			this.state = State.Results;
+			this.guessesSubmit.innerText = "Reset";
 		} else {
 			this.state = State.Blinking;
+			this.guessesSubmit.innerText = "Submit";
 		}
 	}
 
