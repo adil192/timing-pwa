@@ -40,11 +40,13 @@ $lastUpdate = "22-06-06-1600"; // when changing this, you should also update sw.
     <p class="flashingWarning">Warning: This demo contains flashing images. A small percentage of
         people may experience seizures when exposed to certain lights,
         patterns or images, even with no history of epilepsy or seizures.</p>
-    <p class="guessesLabel">How long does the square above appear?</p>
+    <label for="guessesRange" class="guessesLabel">How long does the square above appear?</label>
+    <input id="guessesRange" type="range"
+           min="<?=1000/60?>" max="1000.01" step="<?=1000/60?>"
+           style="width: 100%">
     <div id="guessesRow">
-	    <?php for ($ms = 1000/60; $ms < 1000; $ms += 1000/60) { $floored = floor($ms); ?>
-            <button class="btn btn-primary" data-ms="<?=$floored?>"><?=$floored?>ms</button>
-	    <?php } ?>
+        <button class="btn btn-primary" id="guessesSubmit">Submit</button>
+        <p id="guessesValue">000ms</p>
     </div>
 </footer>
 

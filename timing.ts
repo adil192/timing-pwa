@@ -24,6 +24,9 @@ class _Timing {
 	public square: HTMLElement;
 	public resultMsLabel: HTMLHeadingElement;
 	public resultDescLabel: HTMLParagraphElement;
+	public guessesRange: HTMLInputElement;
+	public guessesValue: HTMLParagraphElement;
+	public guessesSubmit: HTMLButtonElement;
 
 	private readonly fps: number = 60;
 	private currentMs: number = 500;
@@ -37,7 +40,7 @@ class _Timing {
 		this.#state = state;
 		switch (state) {
 			case State.Blinking:
-				this.currentMs = Math.floor(1000 * Math.round(Math.random() * this.fps) / this.fps);
+				this.currentMs = Math.round(1000 * Math.round(Math.random() * this.fps) / this.fps);
 
 				this.resultMsLabel.innerText = "";
 				this.resultDescLabel.innerText = "";
@@ -70,13 +73,17 @@ class _Timing {
 			this.square = document.querySelector("square");
 			this.resultMsLabel = this.square.querySelector("h2");
 			this.resultDescLabel = this.square.querySelector("p");
+			this.guessesRange = document.querySelector("#guessesRange");
+			this.guessesValue = document.querySelector("#guessesValue");
+			this.guessesSubmit = document.querySelector("#guessesSubmit");
 
-			document.querySelectorAll("#guessesRow button").forEach((btn, i) => {
-				btn.addEventListener("click", () => {
-					this.inputMs = parseInt(btn.getAttribute("data-ms"));
-					this.btnClicked();
-				});
-			});
+			this.guessesRange.addEventListener("input", () => {
+				this.inputMs = Math.round(this.guessesRange.valueAsNumber);
+				this.guessesValue.innerText = this.inputMs + "ms";
+			})
+			this.guessesSubmit.addEventListener("click", () => {
+				this.btnClicked();
+			})
 			this.square.addEventListener("click", () => {
 				this.squareClicked();
 			})
@@ -108,8 +115,11 @@ class _Timing {
 	}
 
 	private btnClicked() {
-		if (this.state != State.Blinking) return;
-		this.state = State.Results;
+		if (this.state == State.Blinking) {
+			this.state = State.Results;
+		} else {
+			this.state = State.Blinking;
+		}
 	}
 
 	private squareClicked() {
