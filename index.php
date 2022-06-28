@@ -45,11 +45,11 @@ $lastUpdate = "22-06-19-1400"; // when changing this, you should also update sw.
         patterns or images, even with no history of epilepsy or seizures.</p>
     <label for="guessesRange" class="guessesLabel">How long does the square above appear?</label>
     <input id="guessesRange" type="range"
-           min="<?=1000/60?>" max="1000.01" step="<?=1000/60?>" value="500"
+           min="<?=1000/60?>" max="500.01" step="<?=1000/60?>" value="250"
            style="width: 100%">
     <div id="guessesRow">
         <button class="btn btn-primary" id="guessesSubmit">Submit</button>
-        <p id="guessesValue">500ms</p>
+        <p id="guessesValue">250ms</p>
     </div>
 </footer>
 

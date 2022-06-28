@@ -43,8 +43,8 @@ class _Timing {
 	public guessesSubmit: HTMLButtonElement;
 
 	private readonly fps: number = 60;
-	private currentMs: number = 1000;
-	private inputMs: number = 500;
+	private currentMs: number = 500;
+	private inputMs: number = 250;
 
 	#state: State = State.Blinking;
 	public get state() {
