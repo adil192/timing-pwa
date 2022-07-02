@@ -1,5 +1,5 @@
 // Cache name has a timestamp because the browser re-caches the assets when the service worker file is modified
-const staticCacheName = "timing-cache-" + "22-06-28-0000";
+const staticCacheName = "timing-cache-" + "22-07-02-0000";
 const assets = [
 	'/timing/',
 	'/timing/index.php',
