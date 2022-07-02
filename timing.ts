@@ -54,7 +54,7 @@ class _Timing {
 		this.#state = state;
 		switch (state) {
 			case State.Blinking:
-				this.currentMs = Math.round(1000 * Math.round(Math.random() * this.fps) / this.fps);
+				this.currentMs = Math.round(500 * Math.round(Math.random() * this.fps) / this.fps);
 
 				this.resultMsLabel.innerText = "";
 				this.resultDescLabel.innerText = "";
